@@ -2,3 +2,7 @@
 /input_videos
 /runs
 /models
+/output_videos
+utils/__pycache__
+trackers/__pycache__
+/stubs
