@@ -6,3 +6,5 @@
 utils/__pycache__
 trackers/__pycache__
 /stubs
+team_assigner/__pycache__/__init__.cpython-312.pyc
+team_assigner/__pycache__/team_assigner.cpython-312.pyc
