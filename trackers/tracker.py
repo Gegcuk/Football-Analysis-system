@@ -156,7 +156,7 @@ class Tracker:
 
         return frame
 
-    def draw_team_ball_control(frame, frame_num, team_ball_control):
+    def draw_team_ball_control(self, frame, frame_num, team_ball_control):
         overlay = frame.copy()
         cv2.rectangle(overlay, (1350, 850), (1900, 970), (255, 255, 255), -1)
         alpha = 0.4
@@ -167,13 +167,13 @@ class Tracker:
         team_2_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
         team1 = team_1_num_frames/(team_1_num_frames+team_2_num_frames)
         team2 = team_2_num_frames/(team_1_num_frames+team_2_num_frames)
-        cv2.putText(frame, f"Team 1 ball control: {team1 * 100:.2f}%", (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
-        cv2.putText(frame, f"Team 1 ball control: {team2 * 100:.2f}%", (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv2.putText(frame, f"Team 1 ball control: {team1 * 100:.1f}%", (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv2.putText(frame, f"Team 1 ball control: {team2 * 100:.1f}%", (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
         return frame
 
 
 
-    def draw_annotations(self, video_frames, tracks, team_draw_control):
+    def draw_annotations(self, video_frames, tracks, team_ball_control):
         output_video_frames = []
         for frame_num, frame in enumerate(video_frames):
             frame = frame.copy()
