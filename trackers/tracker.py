@@ -167,8 +167,8 @@ class Tracker:
         team_2_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
         team1 = team_1_num_frames/(team_1_num_frames+team_2_num_frames)
         team2 = team_2_num_frames/(team_1_num_frames+team_2_num_frames)
-        cv2.putText(frame, f"Team 1 ball control: {team1 * 100:.1f}%", (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
-        cv2.putText(frame, f"Team 1 ball control: {team2 * 100:.1f}%", (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv2.putText(frame, f"Team 1 ball control: {team1 * 100:.0f}%", (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        cv2.putText(frame, f"Team 2 ball control: {team2 * 100:.0f}%", (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
         return frame
 
 
