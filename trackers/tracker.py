@@ -162,16 +162,34 @@ class Tracker:
         alpha = 0.4
         cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
-        team_ball_control_till_frame = team_ball_control[:frame_num+1]
-        team_1_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==1].shape[0]
-        team_2_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
-        team1 = team_1_num_frames/(team_1_num_frames+team_2_num_frames)
-        team2 = team_2_num_frames/(team_1_num_frames+team_2_num_frames)
-        cv2.putText(frame, f"Team 1 ball control: {team1 * 100:.0f}%", (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
-        cv2.putText(frame, f"Team 2 ball control: {team2 * 100:.0f}%", (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+        team_ball_control_till_frame = team_ball_control[: frame_num + 1]
+        team_1_num_frames = team_ball_control_till_frame[
+            team_ball_control_till_frame == 1
+        ].shape[0]
+        team_2_num_frames = team_ball_control_till_frame[
+            team_ball_control_till_frame == 2
+        ].shape[0]
+        team1 = team_1_num_frames / (team_1_num_frames + team_2_num_frames)
+        team2 = team_2_num_frames / (team_1_num_frames + team_2_num_frames)
+        cv2.putText(
+            frame,
+            f"Team 1 ball control: {team1 * 100:.0f}%",
+            (1400, 900),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0, 0, 0),
+            3,
+        )
+        cv2.putText(
+            frame,
+            f"Team 2 ball control: {team2 * 100:.0f}%",
+            (1400, 950),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0, 0, 0),
+            3,
+        )
         return frame
-
-
 
     def draw_annotations(self, video_frames, tracks, team_ball_control):
         output_video_frames = []
@@ -185,8 +203,8 @@ class Tracker:
             for track_id, player in player_dict.items():
                 color = player.get("team_color", (0, 0, 255))
                 frame = self.draw_ellipse(frame, player["bbox"], color, track_id)
-                if player.get('has_ball', False):
-                    frame = self.draw_triangle(frame, player['bbox'], (0, 0, 255))
+                if player.get("has_ball", False):
+                    frame = self.draw_triangle(frame, player["bbox"], (0, 0, 255))
 
             for _, referee in referee_dict.items():
                 frame = self.draw_ellipse(frame, referee["bbox"], (0, 0, 0))
